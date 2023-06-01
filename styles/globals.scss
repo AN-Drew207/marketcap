@@ -1,0 +1,481 @@
+@import './variables.scss';
+
+@font-face {
+	font-family: 'VagRounded';
+	src: url('./fonts/VagRounded/VAGRoundedStd-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'HelveticaRounded';
+	src: url('./fonts/HelveticaRounded/HelveticaRoundedLTStd-BdCn.ttf')
+		format('truetype');
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'LiberationSans';
+	src: url('./fonts/liberation-sans/LiberationSans-Regular.ttf')
+		format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Raleway';
+	src: url('./fonts/Raleway/static/Raleway-Regular.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'RalewayBold';
+	src: url('./fonts/Raleway/static/Raleway-Bold.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'National';
+	src: url('./fonts/National/National_2_Regular.otf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'EDLungwort';
+	src: url('./fonts/EDLungwort-Regular.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+/* @font-face {
+	font-family: 'Pilcrowrounded';
+	src: url('./fonts/PilcrowRounded-Heavy.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: 'Pilcrowrounded';
+	src: url('./fonts/PilcrowRounded-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap');
+
+*,
+html,
+body {
+	font-family: 'EDLungwort';
+	scroll-behavior: smooth;
+}
+
+#form > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+
+#form > div > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 60%;
+	text-align: center;
+}
+
+.input {
+	border-radius: 10px;
+	background-color: #f2e7d1 !important;
+}
+
+.Raleway {
+	font-family: 'RalewayBold';
+}
+
+.RalewayBold {
+	font-family: 'RalewayBold';
+}
+
+.RalewayThin {
+	font-family: 'Raleway';
+}
+
+.loader {
+	position: relative;
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	background: linear-gradient(#fffb00, #aea5fd, #87d2ff);
+	animation: animate 1.2s linear infinite;
+}
+
+@keyframes animate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.loader span {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background: linear-gradient(#fffb00, #aea5fd, #87d2ff);
+}
+
+.loader span:nth-child(1) {
+	filter: blur(5px);
+}
+
+.loader span:nth-child(2) {
+	filter: blur(10px);
+}
+
+.loader span:nth-child(3) {
+	filter: blur(25px);
+}
+
+.loader span:nth-child(4) {
+	filter: blur(50px);
+}
+
+.loader:after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	bottom: 10px;
+	background: #f1f1f1;
+	border: solid white 5px;
+	border-radius: 50%;
+}
+
+.divider {
+	border: 0.5px solid #ffffff;
+	background-color: #ffffff;
+	width: 30%;
+	// $margin-top: (
+	// 	1920px: 28px,
+	// 	1440px: 18px,
+	// 	768px: 10px,
+	// 	375px: 10px,
+	// );
+	// @include poly-fluid-sizing('margin-top', $margin-top);
+}
+
+.options {
+	padding-bottom: 15px;
+}
+
+.options-header {
+	text-align: center;
+	font-size: 1rem;
+	font-weight: normal;
+}
+
+.options-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.option-item {
+	padding: 8px 15px;
+	border: 1px solid #2898ec;
+	border-radius: 25px;
+	color: #1f91e7;
+	font-size: 0.9rem;
+	margin: 3px;
+	box-shadow: inset 0px 0px 0px #2273c4;
+	transition: all 0.5s;
+	cursor: pointer;
+}
+
+.option-item:hover {
+	box-shadow: inset 195px 0px 0px #2273c4;
+	color: #ffffff;
+}
+
+.stats {
+	color: white;
+	font-size: 0.9rem;
+	background-color: rgba(45, 159, 253, 0.589);
+	display: flex;
+	background: linear-gradient(to top right, rgb(15, 146, 221), #055991);
+	border-radius: 10px;
+	align-items: center;
+	justify-content: center;
+}
+.column-left {
+	text-align: right;
+}
+.column-right {
+	text-align: left;
+	padding: 8px;
+}
+
+.url-link {
+	font-size: 0.9rem;
+	padding: 10px;
+	border-radius: 3px;
+	background-color: #2273c4;
+	display: flex;
+	align-items: center;
+	color: #fff;
+}
+.url-icon {
+	width: 35px;
+	margin-right: 10px;
+}
+.url-header {
+	font-size: 0.9rem;
+	font-weight: lighter;
+}
+
+.tel-link {
+	font-size: 0.7rem;
+	padding: 2px 5px;
+	border-radius: 30px;
+	background-color: #2273c4;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	text-decoration: none;
+	fill: #fff;
+}
+
+.app-chatbot-button {
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	padding: 10px;
+	color: #fff;
+	background-color: #0d2d44;
+	border: none;
+	position: fixed;
+	bottom: 25px;
+	z-index: 9999;
+	left: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: transform 0.6s ease-in-out;
+}
+.app-chatbot-button:hover {
+	transform: scale(1.1);
+}
+.app-chatbot-container {
+	margin: 40px 0;
+	display: flex;
+	justify-content: center;
+	position: fixed;
+	left: 40px;
+	bottom: 55px;
+	z-index: 9999;
+	box-shadow: 5px 5px 13px rgba(91, 81, 81, 0.4);
+	border-radius: 5px;
+}
+.app-chatbot-button-icon {
+	fill: #fff;
+}
+
+.divider-full {
+	border: 0.5px solid #707070;
+	background-color: #707070;
+	width: 100%;
+	// $margin-top: (
+	// 	1920px: 28px,
+	// 	1440px: 18px,
+	// 	768px: 10px,
+	// 	375px: 10px,
+	// );
+	// @include poly-fluid-sizing('margin-top', $margin-top);
+}
+
+.shopify-buy__product {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.border-l-05 {
+	border-left: 0.5px solid white;
+}
+
+.swiper-pagination-bullet {
+	opacity: 0.5 !important;
+	background-color: #ffffff !important;
+}
+
+.swiper-pagination-bullet-active {
+	opacity: 1 !important;
+}
+
+.swiper-wrapper {
+	// justify-content: center;
+	align-items: center;
+}
+
+.textMain {
+	color: #ffffff;
+}
+
+.hoverTextMain:hover {
+	transition: 1s ease-in;
+	background: #aea5fd;
+	background: linear-gradient(90deg, #aea5fd, #87d2ff);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.textGold {
+	background: #aea5fd;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 230, 0, 0.185),
+		rgb(255, 242, 0)
+	);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.gradientBgBottle {
+	background: rgb(10, 9, 0);
+	background: linear-gradient(
+		180deg,
+		rgba(10, 9, 0, 1) 0%,
+		rgba(255, 244, 0, 0.5074404761904762) 100%,
+		rgba(0, 212, 255, 0.6727065826330532) 100%
+	);
+}
+
+.container-auth {
+	min-height: 100vh;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	$padding-left: (
+		1920px: 406px,
+		1440px: 406px,
+		768px: 50px,
+		375px: 12px,
+	);
+	@include poly-fluid-sizing('padding-left', $padding-left);
+
+	$padding-right: (
+		1920px: 406px,
+		1440px: 406px,
+		768px: 50px,
+		375px: 12px,
+	);
+	@include poly-fluid-sizing('padding-right', $padding-right);
+
+	$padding-top: (
+		1920px: 90px,
+		768px: 80px,
+		375px: 30px,
+	);
+	@include poly-fluid-sizing('padding-top', $padding-top);
+
+	$padding-bottom: (
+		1920px: 90px,
+		768px: 80px,
+		375px: 30px,
+	);
+	@include poly-fluid-sizing('padding-bottom', $padding-bottom);
+
+	.box {
+		$padding-left: (
+			1920px: 183px,
+			1280px: 20px,
+			768px: 50px,
+			375px: 12px,
+		);
+		@include poly-fluid-sizing('padding-left', $padding-left);
+
+		$padding-right: (
+			1920px: 183px,
+			1280px: 20px,
+			768px: 50px,
+			375px: 12px,
+		);
+		@include poly-fluid-sizing('padding-right', $padding-right);
+
+		$padding-top: (
+			1920px: 38px,
+			768px: 30px,
+			375px: 30px,
+		);
+		@include poly-fluid-sizing('padding-top', $padding-top);
+
+		$padding-bottom: (
+			1920px: 38px,
+			768px: 30px,
+			375px: 30px,
+		);
+		@include poly-fluid-sizing('padding-bottom', $padding-bottom);
+	}
+}
+
+/* Works on Firefox */
+.scroll-custom {
+	scrollbar-width: thin;
+	scrollbar-color: rgba(0, 0, 0, 0.692) #f5f5f54b;
+}
+
+/* Works on Chrome, Edge, and Safari */
+.scroll-custom::-webkit-scrollbar {
+	width: 7px;
+	background-color: #f5f5f54b;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: transparent;
+	background-image: -webkit-gradient(
+		linear,
+		40% 0%,
+		75% 84%,
+		from(rgba(0, 0, 0, 0.692)),
+		to(rgba(0, 0, 0, 0.692)),
+		color-stop(0.6, rgba(0, 0, 0, 0.692))
+	);
+}
+
+.box-balance {
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: 5px 5px 5px #0000000d;
+	border-radius: 20px;
+}
+
+.separator-right {
+	border: 1px solid #707070;
+	width: 100%;
+	height: 100%;
+}
+.box-amount-recharge {
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: 0px 10px 30px #00000029;
+	border-radius: 20px;
+}

@@ -1,18 +1,77 @@
-/** @type {import('tailwindcss').Config} */
+const colorsTalwind = require('tailwindcss/colors');
+
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
-  theme: {
-    extend: {
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
-    },
-  },
-  plugins: [],
-}
+	content: [
+		'./pages/**/*.{js,ts,jsx,tsx}',
+		'./components/**/*.{js,ts,jsx,tsx}',
+		'./hooks/use-modal.tsx',
+	],
+	theme: {
+		screens: {
+			xs: '440px',
+			sm: '640px',
+			md: '768px',
+			lg: '1024px',
+			xl: '1280px',
+			'2xl': '1536px',
+			'3xl': '1700px',
+		},
+		fontFamily: {
+			roboto: ['Roboto', 'sans-serif'],
+			montserrat: ['Montserrat', 'sans-serif'],
+		},
+		colors: {
+			...colorsTalwind,
+			primary: 'var(--color-primary)',
+			primaryOpacity: 'var(--color-primary-opacity)',
+			secondary: 'var(--color-secondary)',
+			terciary: 'var(--color-terciary)',
+			terciaryOpacity: 'var(--color-terciaryOpacity)',
+			overlay: 'var(--color-overlay)',
+			gold: 'var(--color-gold)',
+			['overlay-2']: 'var(--color-overlay-2)',
+			status: {
+				success: 'var(--color-alert-success)',
+				error: 'var(--color-alert-error)',
+			},
+			facebook: 'var(--color-facebook)',
+
+			gray: {
+				0: 'var(--color-gray-0)',
+				200: 'var(--color-gray-200)',
+				500: 'var(--color-gray-500)',
+				800: 'var(--color-gray-800)',
+				900: 'var(--color-gray-900)',
+				opacity: {
+					10: 'var(--color-gray-500-opacity-10)',
+				},
+			},
+			white: 'var(--color-white)',
+			black: {
+				0: 'var(--color-black-0)',
+				1: 'var(--color-black-1)',
+			},
+			transparent: 'rgba(0, 0, 0, 0)',
+			'transparent-color': {
+				gray: {
+					200: 'var(--transparent-gray-200)',
+					800: 'var(--transparent-gray-800)',
+				},
+			},
+			orange: colorsTalwind.orange,
+		},
+		extend: {
+			boxShadow: {
+				generic: '0px 4px 14px #A1B1C4',
+				button: '0px 0px 70px 20px rgb(91 77 241 / 50%);',
+			},
+		},
+	},
+
+	plugins: [
+		require('@tailwindcss/typography'),
+		require('@tailwindcss/forms'),
+		require('@tailwindcss/line-clamp'),
+		require('@tailwindcss/aspect-ratio'),
+	],
+};
