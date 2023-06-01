@@ -5,7 +5,7 @@ import { XIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button } from 'components/common/button';
-import Styles from '../../../landing/styles.module.scss';
+import Styles from '../../landing/styles.module.scss';
 import useMagicLink from 'hooks/useMagicLink';
 import { State } from 'redux/actions';
 import { useSelector } from 'react-redux';
