@@ -12,7 +12,7 @@ import 'styles/fontawesome/fontawesome.css';
 import Head from 'next/head';
 import { store } from '../redux/store';
 import { Provider } from 'react-redux';
-import AppLayoutApp from 'components/personal/Layout';
+import AppLayoutApp from 'components/Layout';
 
 function MyApp({
 	Component,

@@ -8,22 +8,14 @@ import { Loading } from 'components/landing/loadingComponent';
 import { useModal } from 'hooks/modal';
 import useMagicLink from 'hooks/useMagicLink';
 import Link from 'next/link';
-import router, { useRouter } from 'next/router';
+import router from 'next/router';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
-import { State, updateEmail } from 'redux/actions';
 
 export const LoginPersonal = () => {
-	const { register, handleSubmit } = useForm();
 	const dispatch = useDispatch();
 	const { login, loading } = useMagicLink();
-	const { network, networkName } = useSelector((state: { state: State }) => {
-		return state.state;
-	});
-
-	const [wallet, setWallet] = React.useState({ wallet: '', typeOfWallet: '' });
 
 	// const { email } = useRouter().query;
 

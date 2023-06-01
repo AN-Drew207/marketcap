@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
-import { Footer } from 'components/footer';
-import { SwiperSlide, Swiper } from 'swiper/react';
 import 'swiper/css';
 import Link from 'next/link';
 import { MenuIcon } from '@heroicons/react/outline';
@@ -10,14 +8,12 @@ import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { State } from 'redux/actions';
 import { Dropdown } from 'components/common/dropdown/dropdown';
-import { NavbarItem } from 'components/personal/Layout';
+import { NavbarItem } from 'components/Layout';
 import router, { useRouter } from 'next/router';
 import useMagicLink from 'hooks/useMagicLink';
 import { Button } from 'components/common/button';
-import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { keyframes } from '@emotion/react';
-import { SidebarMobile } from 'components/personal/Layout/sidebars/mobile';
+import { SidebarMobile } from 'components/Layout/sidebars/mobile';
 
 export const Navbar = () => {
 	const { address, network, networkName, typeOfWallet } = useSelector(
@@ -28,7 +24,6 @@ export const Navbar = () => {
 
 	const dispatch = useDispatch();
 	const { showWallet, disconnect } = useMagicLink();
-	const [isExecuted, setIsExecuted] = React.useState(false);
 	const [sideBarOpen, setSidebarOpen] = React.useState(false);
 
 	const navItems = [
@@ -45,60 +40,7 @@ export const Navbar = () => {
 
 	return (
 		<>
-			{' '}
-			<div className="xl:w-[45%] w-[42.5%]  xs:gap-[10%] gap-[5%] md:flex hidden justify-end items-center">
-				<a
-					href="/#mezcal"
-					className="cursor-pointer text-center text-gray-900 py-4 Raleway"
-				>
-					OUR MEZCAL
-				</a>
-				<a
-					href="/#story"
-					className="cursor-pointer text-center Raleway text-gray-900 py-4"
-				>
-					OUR STORY
-				</a>
-
-				<a href="/#soul" className="cursor-pointer Raleway text-gray-900 py-4">
-					SOUL
-				</a>
-			</div>
-			<div className="xl:w-[10%] md:w-[15%] flex items-center justify-center shrink-0">
-				<Link href={'/'}>
-					<img
-						src="/logos/shhhhlogo.png"
-						className={clsx(
-							'md:absolute md:pt-[40px] md:w-12 w-10 cursor-pointer'
-						)}
-						alt=""
-					/>
-				</Link>
-			</div>
-			<div className="xl:w-[45%] w-[42.5%] xs:gap-[10%] gap-[5%] md:flex hidden justify-start">
-				<a
-					href="/#rest_bars"
-					className="cursor-pointer text-center Raleway text-gray-900 py-4"
-				>
-					STOCKIST
-				</a>
-				<Link href="/#shop">
-					<div className="cursor-pointer Raleway text-gray-900 py-4">SHOP</div>
-				</Link>
-
-				{/* <Link href="/app/personal/register">
-						<div className="cursor-pointer Raleway text-gray-900 py-4">
-							SIGN UP
-						</div>
-					</Link> */}
-
-				<a
-					href="/#contact"
-					className="cursor-pointer Raleway text-gray-900 py-4"
-				>
-					CONTACT
-				</a>
-			</div>
+			<div className="w-full xs:gap-[10%] gap-[5%] md:flex hidden justify-end items-center"></div>
 			<div className="md:hidden flex items-center justify-center">
 				<div
 					className="lg:hidden flex"
