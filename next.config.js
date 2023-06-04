@@ -12,4 +12,7 @@ module.exports = withPWA({
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
 	},
+	images: {
+		domains: ['s3.coinmarketcap.com'],
+	},
 });

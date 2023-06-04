@@ -4,7 +4,7 @@ import { useRouter } from 'next/dist/client/router';
 import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import useMagicLink from 'hooks/useMagicLink';
-import { Navbar } from 'components/landing/navbar';
+import { Navbar } from 'components/Layout/navbar';
 
 export default function AppLayoutApp() {
 	const router = useRouter();
@@ -47,7 +47,7 @@ export default function AppLayoutApp() {
 	return (
 		<>
 			<nav className="flex w-full sticky top-0 md:text-md sm:text-sm text-[12px] md:items-start items-center bg-primary z-[1000]">
-				<div className="flex md:justify-start justify-between items-center w-full relative md:px-16 px-8 bg-[#ffffff66] py-2">
+				<div className="flex md:justify-start justify-between items-center w-full relative md:px-16 px-8 bg-[#00000077] py-2">
 					<Navbar />
 				</div>
 			</nav>
@@ -85,12 +85,12 @@ export const Logo = () => (
 export const NavbarItem: React.FC<any> = ({ name, link }) => {
 	return (
 		<Link href={link}>
-			<div className={clsx('sm:px-4 px-2 py-2 relative cursor-pointer')}>
+			<div className={clsx('py-2 relative cursor-pointer')}>
 				<div className={clsx('gap-2 flex items-center')}>
 					{/* <div className="flex items-center w-4">{icon}</div> */}
 					<h3
 						className={clsx(
-							'text-md font-bold text-center whitespace-nowrap Raleway text-gray-900'
+							'text-md font-bold text-center whitespace-nowrap Raleway text-overlay'
 						)}
 					>
 						{name}

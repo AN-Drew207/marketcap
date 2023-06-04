@@ -13,6 +13,7 @@ import Head from 'next/head';
 import { store } from '../redux/store';
 import { Provider } from 'react-redux';
 import AppLayoutApp from 'components/Layout';
+import { CoinMarketProvider } from 'context/context';
 
 function MyApp({
 	Component,
@@ -39,29 +40,32 @@ function MyApp({
 				<meta property="og:title" content="AN-Drew Marketcap" />
 				<meta property="og:site_name" content="AN-Drew Marketcap" />
 				<meta name="viewport" content="initial-scale=1, width=device-width" />
+				<link rel="icon" href="/logos/logo.png" />
+
 				<meta
 					name="p:domain_verify"
 					content="435ca054f0bb2782922ffceb8a3f7314"
 				/>
 			</Head>
+			<CoinMarketProvider>
+				<QueryClientProvider client={queryClientRef.current}>
+					<Provider store={store}>
+						<ThemeContext.Provider value={{ theme, setTheme }}>
+							<div
+								className={clsx(
+									'font-montserrat min-h-screen text-gray-800',
+									'transition-colors duration-1000 bg-primary',
+									theme
+								)}
+							>
+								<AppLayoutApp />
 
-			<QueryClientProvider client={queryClientRef.current}>
-				<Provider store={store}>
-					<ThemeContext.Provider value={{ theme, setTheme }}>
-						<div
-							className={clsx(
-								'font-montserrat min-h-screen text-gray-800',
-								'transition-colors duration-1000 bg-primary',
-								theme
-							)}
-						>
-							<AppLayoutApp />
-
-							<Component {...pageProps} />
-						</div>
-					</ThemeContext.Provider>
-				</Provider>
-			</QueryClientProvider>
+								<Component {...pageProps} />
+							</div>
+						</ThemeContext.Provider>
+					</Provider>
+				</QueryClientProvider>
+			</CoinMarketProvider>
 		</>
 	);
 }

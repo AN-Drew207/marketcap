@@ -11,10 +11,7 @@ export const Logo: React.FC<{
 	return (
 		<Link href="/">
 			<a className={clsx('cursor-pointer', className)}>
-				<img
-					className={clsx(classNameImg)}
-					src={type === 'white' ? Images.logoWhite : Images.logoWithColor}
-				/>
+				<img className={clsx(classNameImg)} src={'/logos/ac.png'} />
 			</a>
 		</Link>
 	);

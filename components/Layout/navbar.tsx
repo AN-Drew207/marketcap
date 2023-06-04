@@ -14,6 +14,7 @@ import useMagicLink from 'hooks/useMagicLink';
 import { Button } from 'components/common/button';
 import 'aos/dist/aos.css';
 import { SidebarMobile } from 'components/Layout/sidebars/mobile';
+import { Logo } from 'components/logo';
 
 export const Navbar = () => {
 	const { address, network, networkName, typeOfWallet } = useSelector(
@@ -27,20 +28,26 @@ export const Navbar = () => {
 	const [sideBarOpen, setSidebarOpen] = React.useState(false);
 
 	const navItems = [
-		{ name: 'OUR MEZCAL', link: '/#mezcal' },
-		{ name: 'OUR STORY', link: '/#story' },
-		{ name: 'SOUL', link: '/#soul' },
+		{ name: 'Cryptocurrencies', link: '/#crypto' },
+		{ name: 'Exchanges', link: '/#exchanges' },
+		{ name: 'NFT', link: '/#nft' },
 		{
-			name: 'SHOP',
-			link: '/#shop',
+			name: 'Portfolio',
+			link: '/#portfolio',
 		},
-		{ name: 'STOCKISTS', link: '/#rest_bars"' },
-		{ name: 'CONTACT', link: '/#contact' },
+		{ name: 'Watchlist', link: '/#watchlist"' },
+		{ name: 'Products', link: '/#products' },
+		{ name: 'Learn', link: '/#learn' },
 	];
 
 	return (
-		<>
-			<div className="w-full xs:gap-[10%] gap-[5%] md:flex hidden justify-end items-center"></div>
+		<div className="w-full flex justify-between gap-10 items-center">
+			<div className="flex items-center justify-center gap-4">
+				<Logo className="w-20" />
+				{navItems.map((item, index) => {
+					return <NavbarItem key={index} name={item.name} link={item.link} />;
+				})}
+			</div>
 			<div className="md:hidden flex items-center justify-center">
 				<div
 					className="lg:hidden flex"
@@ -54,17 +61,17 @@ export const Navbar = () => {
 					/>
 				</div>
 			</div>
-			<div className="absolute lg:right-8 right-2 top-0 bottom-0 my-auto md:flex hidden items-center justify-center">
+			<div className="md:flex hidden items-center justify-center">
 				{!address ? (
 					<Link href="/app/personal/login">
-						<div className="cursor-pointer Raleway text-gray-900 flex items-center justify-center">
-							REALM
+						<div className="cursor-pointer z-10 border Raleway !border-overlay px-4 py-2 text-overlay hover:bg-overlay hover:text-primary transition-all duration-300 rounded-md">
+							Connect Wallet
 						</div>
 					</Link>
 				) : (
 					<Dropdown
 						title={
-							<div className="cursor-pointer Raleway text-gray-900 flex items-center justify-center">
+							<div className="cursor-pointer Raleway text-overlay flex items-center justify-center">
 								<UserOutlined className="xl:text-xl text-lg" />
 							</div>
 						}
@@ -81,9 +88,9 @@ export const Navbar = () => {
 							</div> */}
 							<div>
 								<NavbarItem
-									name={'MY REALM'}
+									name={'My Account'}
 									icon={''}
-									link={'/app'}
+									link={'/account'}
 									route={router.asPath}
 								/>
 							</div>
@@ -121,6 +128,6 @@ export const Navbar = () => {
 				network={network}
 				networkName={networkName}
 			/>
-		</>
+		</div>
 	);
 };

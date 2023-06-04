@@ -5,10 +5,10 @@
     border: 1px solid #5b4df1;
     box-shadow: 0px 0px 70px 20px rgb(91 77 241 / 50%); */
 :root {
-	--color-primary: #f2e7d1;
-	--color-primary-opacity: #d4cfc2;
-	--color-secondary: #d2c2b2;
-	--color-overlay: #f2e7d1;
+	--color-primary: #d10000;
+	--color-primary-opacity: #f5fff5;
+	--color-secondary: #f5fff5;
+	--color-overlay: #fafffc;
 	--color-white: white;
 	--color-alert-success: #37a211;
 	--color-alert-error: #b52423;
@@ -27,12 +27,12 @@
 }
 
 .light {
-	--color-primary: #f2e7d1;
-	--color-primary-opacity: #a49284;
-	--color-secondary: #d2c2b2;
-	--color-overlay: #d4cfc2;
+	--color-primary: #d10000;
+	--color-primary-opacity: #f5fff5;
+	--color-secondary: #f5fff5;
+	--color-overlay: #fafffc;
 	--color-overlay-2: #fff9e9;
-	--color-terciary: #736562;
+	--color-terciary: #f5fff5;
 	--color-terciaryOpacity: rgba(115, 101, 98, 0.85);
 	--color-white: white;
 	--color-alert-success: #37a211;
