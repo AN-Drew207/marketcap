@@ -23,7 +23,7 @@ export const Tabs: React.FC<TabsProps> = ({
 	taskBonus,
 }) => {
 	return (
-		<div className="bg-white border-b font-medium border-gray-500 overflow-x-scroll md:overflow-x-auto">
+		<div className="bg-[overlay border-b font-medium border-gray-500 overflow-x-scroll md:overflow-x-auto">
 			<nav className="flex flex-row">
 				{itemsNavigation.map((item: ItemType, key) => {
 					return (

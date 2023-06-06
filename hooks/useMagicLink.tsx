@@ -6,16 +6,17 @@ import BottleCollectionABI from '../contracts/MezcalCollection.json';
 import ERC20ABI from '../contracts/ERC20.json';
 import BottleExchangeABI from '../contracts/BottleExchange.json';
 import bottlesTestnet from 'bottles_mumbai.json';
-import { updateState } from 'redux/actions';
+import { onUpdateUser } from 'redux/actions';
 import toast from 'react-hot-toast';
 import { multiply } from 'components/common/multiply';
-import { send } from '@emailjs/browser';
 
 export default function useMagicLink() {
 	const [account, setAccount] = useState<any>(null);
 	const [loading, setLoading] = useState<any>(null);
 	const [web3, setWeb3] = useState<any>(null);
 	const [magic, setMagic] = useState<any>(null);
+	const [isAuthenticated, setIsAuthenticated] = useState<any>(false);
+	const [provider, setProvider] = useState<any>(null);
 
 	if (
 		typeof window !== 'undefined' &&
@@ -43,6 +44,7 @@ export default function useMagicLink() {
 		});
 		setMagic(magic);
 		setWeb3(new Web3(magic.rpcProvider));
+		setProvider(magic.rpcProvider);
 	}
 
 	const login = async (dispatch: any) => {
@@ -51,11 +53,14 @@ export default function useMagicLink() {
 			const publicAddress = (await web3.eth.getAccounts())[0];
 			setAccount(publicAddress);
 			dispatch(
-				updateState({
-					address: publicAddress,
-					typeOfWallet: 'magic',
+				onUpdateUser({
+					ethAddress: publicAddress,
+					provider: provider,
+					providerName: 'magic',
 				})
 			);
+			setIsAuthenticated(true);
+
 			setLoading(false);
 			return true;
 		} catch (error) {
@@ -85,131 +90,6 @@ export default function useMagicLink() {
 			.catch((error: any) => {
 				console.log(error);
 			});
-	};
-
-	const loginSet = async (setWallet: any) => {
-		setLoading(true);
-		try {
-			const publicAddress = (await web3.eth.getAccounts())[0];
-			setAccount(publicAddress);
-			// const offersReceived = [];
-			// const offersDone = [];
-			setWallet(publicAddress);
-			setLoading(false);
-			return publicAddress;
-		} catch (error) {
-			toast.error((error as any).message, { duration: 4000 });
-			console.log(error, 'aqui');
-			setLoading(false);
-
-			return false;
-		}
-	};
-
-	const loginDoubleSet = async (type: any, code: any) => {
-		setLoading(true);
-		try {
-			const publicAddress = (await web3.eth.getAccounts())[0];
-			setAccount(publicAddress);
-			// const offersReceived = [];
-			// const offersDone = [];
-
-			const email = await getEmail();
-			if (email.error) {
-				throw new Error(
-					'You have rejected to share your email, please accept to continue'
-				);
-			}
-			console.log(email, 'mail');
-			setLoading(false);
-			if (!publicAddress) {
-				return toast.error('Please connect your realm before submitting.');
-			}
-			if (!email) {
-				return toast.error(
-					'To create your personal Realm, the Keeper requires your email.'
-				);
-			}
-
-			let submitted;
-			if (type == 'Soul') {
-				submitted = await (
-					await fetch(
-						'https://api.hsforms.com/submissions/v3/integration/submit/27162245/21d8020c-213b-4ddb-aaac-39829a4ae0a2',
-						{
-							method: 'POST',
-							headers: {
-								['Content-Type']: 'application/json',
-								Authorization: 'pat-eu1-dde296ba-227c-47b4-bde2-2429abfb4f4d',
-							},
-							body: JSON.stringify({
-								fields: [
-									{ objectTypeId: '0-1', name: 'email', value: email.email },
-								],
-							}),
-						}
-					)
-				).json();
-			} else {
-				submitted = await (
-					await fetch(
-						'https://api.hsforms.com/submissions/v3/integration/submit/27162245/15e7e5e8-514c-4c5f-a546-4a51231be851',
-						{
-							method: 'POST',
-							headers: {
-								['Content-Type']: 'application/json',
-								Authorization: 'pat-eu1-dde296ba-227c-47b4-bde2-2429abfb4f4d',
-							},
-							body: JSON.stringify({
-								fields: [
-									{ objectTypeId: '0-1', name: 'email', value: email.email },
-								],
-							}),
-						}
-					)
-				).json();
-			}
-			console.log(submitted, 'test');
-			if (submitted) {
-				console.log('Done!');
-			}
-
-			send(
-				'service_9anqujx',
-				'template_ua6etor',
-				{
-					token_name: type,
-					email: email.email,
-					code: code,
-					wallet: publicAddress,
-				},
-				'BABARAkzQRmw9GBAa'
-			).then(
-				() => {
-					// hide();
-					const string =
-						"Congratulations! you have created your Realm. You'll receive your " +
-						type +
-						' soon!';
-					toast.success(string, {
-						duration: 5000,
-					});
-					return true;
-				},
-				(error) => {
-					console.log(error.text);
-					return false;
-				}
-			);
-
-			return publicAddress;
-		} catch (error) {
-			toast.error((error as any).message, { duration: 4000 });
-			console.log(error, 'aqui');
-			setLoading(false);
-
-			return false;
-		}
 	};
 
 	const signMessage = async () => {
@@ -248,12 +128,14 @@ export default function useMagicLink() {
 			console.log(e);
 		});
 		setAccount(null);
+		setIsAuthenticated(true);
+
 		dispatch(
-			updateState({
-				address: '',
-				typeOfWallet: '',
-				offersActiveReceived: [],
-				offersActiveMade: [],
+			onUpdateUser({
+				ethAddress: '',
+				providerName: '',
+				email: '',
+				provider: undefined,
 			})
 		);
 		setLoading(false);
@@ -478,13 +360,12 @@ export default function useMagicLink() {
 	return {
 		loading,
 		login,
-		loginSet,
-		loginDoubleSet,
 		signMessage,
 		disconnect,
 		showWallet,
 		sendTransaction,
 		account,
+		isAuthenticated,
 		getEmail,
 		acceptAnOfferMagic,
 		exchangeCollectionMagic,

@@ -133,9 +133,22 @@ export const CoinMarketProvider = ({ children }) => {
 		}
 	};
 
+	const getCurrency = async (id) => {
+		try {
+			console.log(id);
+			const res = await fetch(`/api/getCurrency/${id}`);
+			const data = await res.json();
+
+			return data.data.data;
+		} catch (e) {
+			console.log(e.message);
+		}
+	};
+
 	return (
 		<CoinMarketContext.Provider
 			value={{
+				getCurrency,
 				getTopTenCoins,
 				openBuyCryptoModal,
 				setOpenBuyCryptoModal,

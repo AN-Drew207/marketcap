@@ -16,7 +16,6 @@ const CMCtable = () => {
 		try {
 			let apiResponse = await context.getTopTenCoins();
 			let filteredResponse = [];
-			console.log(apiResponse, 'api');
 			for (let i = 0; i < apiResponse.length; i++) {
 				const element = apiResponse[i];
 				if (element.cmc_rank <= 10) filteredResponse.push(element);
@@ -30,7 +29,7 @@ const CMCtable = () => {
 
 	return (
 		<div className="text-white font-bold w-full px-16">
-			<div className="p-6 bg-[#750000] rounded-xl">
+			<div className="p-6 bg-overlay rounded-xl">
 				<table className="w-full  ">
 					<CMCtableHeader />
 
@@ -42,6 +41,7 @@ const CMCtable = () => {
 									starNum={coin.cmc_rank}
 									coinName={coin.name}
 									coinSymbol={coin.symbol}
+									id={coin.id}
 									coinIcon={btc}
 									showBuy={true}
 									hRate={coin.quote.USD.percent_change_24h}

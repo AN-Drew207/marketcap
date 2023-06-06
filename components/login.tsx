@@ -23,7 +23,7 @@ export const LoginPersonal = () => {
 		<div className="min-h-screen h-full flex flex-col justify-center items-center relative w-full">
 			<div className="w-full h-full absolute bg-primary lg:opacity-100 opacity-[0.40]"></div>
 			<form className="w-full flex flex-col items-center justify-center max-w-[600px] gap-2 px-10 relative">
-				<h1 className="text-gray-900 text-4xl w-full text-center Raleway">
+				<h1 className="text-white text-4xl w-full text-center Raleway">
 					Welcome Back
 				</h1>
 				{/* <h2 className="text-primary text-sm w-full text-center">
@@ -50,7 +50,7 @@ export const LoginPersonal = () => {
 					</div>
 				</div>
 				{loading ? (
-					<LoadingOutlined className="text-4xl !text-gray-900" />
+					<LoadingOutlined className="text-4xl !text-white" />
 				) : (
 					<button
 						onClick={async () => {
@@ -66,7 +66,7 @@ export const LoginPersonal = () => {
 							}
 						}}
 						type="button"
-						className="z-10 border Raleway mt-4 !border-gray-900 px-4 py-2 text-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 rounded-md"
+						className="z-10 border Raleway mt-4 !border-gray-900 px-4 py-2 text-white hover:bg-gray-900 hover:text-white transition-all duration-300 rounded-md"
 					>
 						Enter to your Realm
 					</button>
@@ -75,7 +75,7 @@ export const LoginPersonal = () => {
 					<h2 className="text-primary text-[12px]">
 						You don't have account?{' '}
 						<Link href="/app/personal/register">
-							<a className="text-gray-900 font-bold">Sign Up</a>
+							<a className="text-white font-bold">Sign Up</a>
 						</Link>
 					</h2>
 				</div> */}

@@ -169,7 +169,7 @@ export const SidebarMobile: React.FC<LayoutDashboardProps & any> = ({
 										<div className="flex flex-col gap-2 w-full items-start justify-start">
 											{/* <Button
 												className={clsx(
-													'z-10 border border-overlay px-2 py-2 text-gray-800 hover:bg-gray-800 hover:text-gray-900 font-bold transition-all duration-300 pt-4'
+													'z-10 border border-overlay px-2 py-2 text-gray-800 hover:bg-gray-800 hover:text-white font-bold transition-all duration-300 pt-4'
 												)}
 												onClick={() => router.push('/app/personal/register')}
 											>
@@ -178,7 +178,7 @@ export const SidebarMobile: React.FC<LayoutDashboardProps & any> = ({
 											{/* <div className="divider mx-3 mt-4"></div> */}
 											<Button
 												className={clsx(
-													'z-10 border border-overlay px-2 py-2 text-gray-800 hover:bg-gray-800 hover:text-gray-900 font-bold transition-all duration-300'
+													'z-10 border border-overlay px-2 py-2 text-gray-800 hover:bg-gray-800 hover:text-white font-bold transition-all duration-300'
 												)}
 												onClick={() => router.push('/app/personal/login')}
 											>

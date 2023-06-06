@@ -1,3 +1,3 @@
 export * from './AuthApiService';
-export * from './ProfileApiService';
+export * from './CurrencyApiService';
 export * from './keys';

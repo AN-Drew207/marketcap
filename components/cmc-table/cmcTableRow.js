@@ -11,6 +11,7 @@ const styles = {
 
 const CMCtableRow = ({
 	starNum,
+	id,
 	coinName,
 	coinIcon,
 	coinSymbol = '---',
@@ -48,7 +49,7 @@ const CMCtableRow = ({
 
 	const viewCoinDetails = () => {
 		router.push(
-			`/currencies/info?symbol=${coinSymbol}&coin=${coinName}&price=${price}`
+			`/currencies/info?id=${id}&symbol=${coinSymbol}&coin=${coinName}&price=${price}`
 		);
 	};
 
@@ -60,6 +61,33 @@ const CMCtableRow = ({
 
 	const formatNum = (num) => {
 		return Number(num).toFixed(2).toLocaleString();
+	};
+
+	const nFormatter = (num) => {
+		return num.toLocaleString('en-US', {
+			style: 'currency',
+			currency: 'USD',
+		});
+	};
+
+	const nFormatterQuantity = (num) => {
+		if (num >= 1000000) {
+			return (
+				(num / 1000000)
+					.toFixed(2)
+					.replace(/\.0$/, '')
+					.replace(/\d(?=(\d{3})+\.)/g, '$&,') + 'M'
+			);
+		}
+		if (num >= 1000) {
+			return (
+				(num / 1000)
+					.toFixed(2)
+					.replace(/\.0$/, '')
+					.replace(/\d(?=(\d{3})+\.)/g, '$&,') + 'K'
+			);
+		}
+		return num;
 	};
 
 	return (
@@ -83,7 +111,7 @@ const CMCtableRow = ({
 				)}
 
 				<td className="cursor-pointer" onClick={viewPrice}>
-					<p>${formatNum(price)}</p>
+					<p> {nFormatter(price)}</p>
 				</td>
 				<td>
 					<Rate isIncrement={hRateIsIncrement} rate={`${formatNum(hRate)}%`} />
@@ -94,27 +122,33 @@ const CMCtableRow = ({
 
 				<td>
 					<div>
-						<p>${formatNum(marketCapValue)}</p>
+						<p>{nFormatter(marketCapValue)}</p>
 					</div>
 				</td>
 
 				<td>
 					<div>
-						<p>{formatNum(volumeValue)}</p>
-						<p className="text-gray-400">
-							{formatNum(volumeCryptoValue)} {coinSymbol}
+						<p>{nFormatter(volumeValue)}</p>
+						<p className="text-gray-200 text-[10px] text-end">
+							{nFormatterQuantity(volumeCryptoValue)} {coinSymbol}
 						</p>
 					</div>
 				</td>
 
 				<td>
 					<div>
-						<p>{formatNum(circulatingSupply)}</p>
+						<p>{nFormatter(circulatingSupply)}</p>
 					</div>
 				</td>
 
 				<td>
-					<Image src={getRandomGraph()} width={150} height={60} alt="" />
+					<Image
+						className="filter brightness-[10]"
+						src={getRandomGraph()}
+						width={150}
+						height={60}
+						alt=""
+					/>
 				</td>
 
 				<td>

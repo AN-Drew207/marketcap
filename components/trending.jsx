@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Rate from './cmc-table/rate';
 import fire from '../assets/fire.png';
 import btc from '../assets/btc.png';
+import usdc from '../assets/usdc.png';
 import usdt from '../assets/usdt.png';
+import xrp from '../assets/xrp.png';
 import gainers from '../assets/gainers.png';
 import recent from '../assets/recent.png';
 import TrendingCard from './trendingCard';
 import ReactSwitch from 'react-switch';
+import { CoinMarketContext } from 'context/context';
 
 const styles = {
 	trendingWrapper: `max-w-screen-[95vw] w-full px-16`,
-	h1: `text-3xl Raleway font-bold text-primary`,
+	h1: `text-3xl Raleway font-bold text-white`,
 	flexCenter: `flex items-center,`,
 };
 
@@ -31,21 +34,75 @@ const Trending = () => {
 			symbol: 'USDT',
 			name: 'Tether',
 			icon: usdt,
-			isIncrement: false,
-			rate: '9.32%',
+			isIncrement: true,
+			rate: '2.32%',
 		},
 		{
+			number: 3,
+			symbol: 'USDC',
+			name: 'USD Coin',
+			icon: usdc,
+			isIncrement: false,
+			rate: '15.40%',
+		},
+	];
+
+	const gainersData = [
+		{
 			number: 1,
+			symbol: 'XRP',
+			name: '',
+			icon: xrp,
+			isIncrement: true,
+			rate: '10.45%',
+		},
+		{
+			number: 2,
 			symbol: 'BTC',
 			name: 'Bitcoin',
 			icon: btc,
 			isIncrement: true,
 			rate: '2.34%',
 		},
+		{
+			number: 3,
+			symbol: 'USDT',
+			name: 'Tether',
+			icon: usdt,
+			isIncrement: true,
+			rate: '2.32%',
+		},
+	];
+
+	const recentlyData = [
+		{
+			number: 1,
+			symbol: 'USDC',
+			name: 'USD Coin',
+			icon: usdc,
+			isIncrement: false,
+			rate: '15.40%',
+		},
+		{
+			number: 2,
+			symbol: 'XRP',
+			name: '',
+			icon: xrp,
+			isIncrement: true,
+			rate: '10.45%',
+		},
+		{
+			number: 3,
+			symbol: 'USDT',
+			name: 'Tether',
+			icon: usdt,
+			isIncrement: true,
+			rate: '2.32%',
+		},
 	];
 
 	return (
-		<div className="text-gray-900 flex flex-col items-center justify-center pt-16">
+		<div className="text-white flex flex-col items-center justify-center pt-16">
 			<div className={styles.trendingWrapper}>
 				<div className="flex justify-between">
 					<h1 className={styles.h1}>
@@ -63,7 +120,7 @@ const Trending = () => {
 					</div>
 				</div>
 				<br />
-				<div className="flex">
+				<div className="flex text-white">
 					<p>The global crypto market cap is $1.74T, a &nbsp; </p>
 					<span>
 						{' '}
@@ -72,7 +129,7 @@ const Trending = () => {
 					<p>
 						{' '}
 						&nbsp; {'increase'} over the last day.{' '}
-						<span className="underline">Read More</span>{' '}
+						{/* <span className="underline">Read More</span>{' '} */}
 					</p>
 				</div>
 				<br />
@@ -86,12 +143,12 @@ const Trending = () => {
 					<TrendingCard
 						title="Biggest Gainers"
 						icon={gainers}
-						trendingData={trendingData}
+						trendingData={gainersData}
 					/>
 					<TrendingCard
 						title="Recently Added"
 						icon={recent}
-						trendingData={trendingData}
+						trendingData={recentlyData}
 					/>
 				</div>
 			</div>

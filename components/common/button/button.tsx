@@ -104,7 +104,7 @@ export const Button: React.FC<
 							</div>
 						</Typography>
 					) : icon ? (
-						<Icon src={icon} fillPath={true} className="w-5 h-5 bg-white" />
+						<Icon src={icon} fillPath={true} className="w-5 h-5 bg-[overlay" />
 					) : (
 						children
 					)}

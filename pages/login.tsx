@@ -1,17 +1,15 @@
 import React from 'react';
 import { Button } from '../components/common/button';
-// import Dialog from "../components/common/dialog";
-// import { Typography } from "../components/common/typography";
-// import { InputPassword } from "../components/common/form/input-password";
-// import { InputEmail } from "../components/common/form/input-email";
 import clsx from 'clsx';
 import useMagicLink from '../hooks/useMagicLink';
 import { WALLETS } from '../utils/connection/utils';
 import { LoadingOutlined } from '@ant-design/icons';
-// import { onUpdateUser } from '../redux/actions';
-import { useWeb3React } from '@web3-react/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useAppDispatch } from 'redux/hooks';
+import { onUpdateUser } from 'redux/actions';
+import { switchChain } from 'components/common/switchChain';
+import { useWeb3React } from '@web3-react/core';
 
 type Values = {
 	email?: string;
@@ -22,24 +20,12 @@ type Values = {
 
 const Login = () => {
 	const [loading, setLoading] = React.useState(false);
-	const { login, isAuthenticated, magic } = useMagicLink();
+	const { login, isAuthenticated } = useMagicLink();
 
-	const { ethAddress: account } = useSelector(
-		(state: any) => state.blockchain.user
-	);
-
-	const { network, networkName } = useSelector(
-		(state: any) => state.blockchain
-	);
-
-	const { account: user, provider } = useWeb3React();
-
-	// const {
-	// 	matic: { battlePass },
-	// } = getAddresses();
+	const { provider, providerName } = useSelector((state: any) => state.layout);
+	const { account: user } = useWeb3React();
 
 	const router = useRouter();
-	const { query } = useRouter();
 	const dispatch = useDispatch();
 	const handleLogin = async () => {
 		setLoading(true);
@@ -47,7 +33,15 @@ const Login = () => {
 			await login(dispatch);
 			localStorage.setItem('typeOfConnection', 'magic');
 			localStorage.setItem('loginTime', new Date().getTime().toString());
-			router.push('/');
+			// const queryAddress: any = router.query.get('redirectAddress')?.toString();
+			// if (
+			// 	query.get('redirect') == 'true' &&
+			// 	query.get('redirectAddress') != null
+			// ) {
+			// 	router.push(
+			// 		query.get('redirectAddress') != undefined ? queryAddress : '/'
+			// 	);
+			// }
 		} catch (err) {
 			console.log({ err });
 			setLoading(false);
@@ -56,8 +50,8 @@ const Login = () => {
 	};
 
 	React.useEffect(() => {
-		if (isAuthenticated || account !== '') router.push('/');
-	}, [isAuthenticated, account]);
+		if (isAuthenticated || user !== '') router.push('/');
+	}, [isAuthenticated, user]);
 
 	// const setUser = async () => {};
 
@@ -73,7 +67,9 @@ const Login = () => {
 			const savedLoginTime = localStorage.getItem('loginTime');
 			console.log(savedLoginTime, typeOfConnection, 'xddd');
 
-			// await switchChain(network, networkName, provider);
+			// const queryAddress: any = query.get('redirectAddress')?.toString();
+
+			await switchChain(80001, providerName, provider);
 			// const battlePassContract = getContractCustom(
 			//   "BattlePass",
 			//   battlePass,
@@ -85,16 +81,21 @@ const Login = () => {
 			//     .call()
 			// ).rewardId;
 			// const balance = await battlePassContract.methods.balanceOf(user, season);
-			// dispatch(
-			// 	onUpdateUser({
-			// 		ethAddress: user,
-			// 		email: '',
-			// 		provider: provider?.provider,
-			// 		providerName: 'web3react',
-			// 		// ownsBattlePass: balance > 0,
-			// 	})
-			// );
-			router.push('/');
+			dispatch(
+				onUpdateUser({
+					ethAddress: user,
+					email: '',
+					provider: provider?.provider,
+					providerName: 'web3react',
+					// ownsBattlePass: balance > 0,
+				})
+			);
+			// if (
+			// 	query.get('redirect') == 'true' &&
+			// 	query.get('redirectAddress') != null
+			// ) {
+			// 	router(query.get('redirectAddress') != undefined ? queryAddress : '/');
+			// }
 		} catch (err) {
 			console.log({ err });
 		}
@@ -106,25 +107,26 @@ const Login = () => {
 			<div className="max-w-[100vw] overflow-hidden h-screen w-full flex flex-col items-center justify-center gap-10">
 				<div className="absolute h-screen max-w-full overflow-hidden">
 					<img
-						className={`relative min-w-[120vw] min-h-[101vh] top-0 right-0 left-[-8%] mx-auto`}
+						className={`relative min-w-[100vw] min-h-[100vh] top-0 left-0`}
+						src="img/bg.jpg"
 						alt=""
 					/>
 				</div>
-				<h1 className="font-bold text-white text-3xl relative">
-					WELCOME TO ENDERS GATE
-				</h1>
+				<div className="absolute h-screen w-full overflow-hidden bg-overlay-2 opacity-50"></div>
+
+				<h1 className="font-bold text-white text-3xl relative">Let's Login</h1>
 				<div
 					className={clsx(
 						'flex flex-col gap-4 relative h-80 items-center justify-center'
 					)}
 				>
 					{loading == true ? (
-						<LoadingOutlined className="text-5xl text-white" />
+						<LoadingOutlined className="text-5xl !text-white" />
 					) : (
 						<>
 							<Button
 								disabled={loading}
-								className="w-full mb-2 bg-overlay rounded-md  text-white hover:text-overlay"
+								className="cursor-pointer z-10 border Raleway !border-white px-4 py-2 text-white hover:bg-white hover:text-overlay-2 transition-all duration-300 rounded-md w-full"
 								onClick={() => handleLogin()}
 							>
 								{loading ? '...' : 'Login with Email'}
@@ -132,7 +134,7 @@ const Login = () => {
 							{WALLETS.map((k: any, i: any) => (
 								<Button
 									disabled={loading}
-									className="w-full mb-2 bg-overlay rounded-md  text-white hover:text-overlay"
+									className="cursor-pointer z-10 border Raleway !border-white px-4 py-2 text-white hover:bg-white hover:text-overlay-2 transition-all duration-300 rounded-md w-full"
 									onClick={() => handleConnection(k.connection, k.title)}
 								>
 									{loading ? '...' : 'Login with ' + k.title}
@@ -145,3 +147,5 @@ const Login = () => {
 		</div>
 	);
 };
+
+export default Login;

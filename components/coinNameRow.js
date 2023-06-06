@@ -15,7 +15,7 @@ import { CoinMarketContext } from '../context/context';
 
 const styles = {
 	coinNameRow: 'flex items-center',
-	buyButton: `bg-[#1A1F3A] text-[#6188FF] p-1 px-3 text-sm rounded-lg cursor-pointer hover:opacity-50`,
+	buyButton: `cursor-pointer z-10 border Raleway !border-white px-2 py-1 text-white hover:bg-white hover:text-overlay-2 transition-all duration-300 rounded-md`,
 };
 
 const CoinNameRow = ({ name, icon, clicked }) => {

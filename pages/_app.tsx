@@ -14,6 +14,8 @@ import { store } from '../redux/store';
 import { Provider } from 'react-redux';
 import AppLayoutApp from 'components/Layout';
 import { CoinMarketProvider } from 'context/context';
+import { GunProvider } from 'context/gunContext';
+import Web3Provider from 'components/Web3Provider';
 
 function MyApp({
 	Component,
@@ -31,8 +33,7 @@ function MyApp({
 			<Head>
 				<title>AN-Drew Marketcap</title>
 				<meta name="description" content="" />
-				<meta name="msapplication-TileColor" content="#f2e7d1" />
-				<meta name="theme-color" content="#f2e7d1" />
+				<meta name="theme-color" content="#300" />
 				<meta property="og:title" content="AN-Drew Marketcap" />
 				<meta property="og:description" content="" />
 				<meta property="og:image:width" content="300" />
@@ -48,23 +49,27 @@ function MyApp({
 				/>
 			</Head>
 			<CoinMarketProvider>
-				<QueryClientProvider client={queryClientRef.current}>
-					<Provider store={store}>
-						<ThemeContext.Provider value={{ theme, setTheme }}>
-							<div
-								className={clsx(
-									'font-montserrat min-h-screen text-gray-800',
-									'transition-colors duration-1000 bg-primary',
-									theme
-								)}
-							>
-								<AppLayoutApp />
+				<Web3Provider>
+					<GunProvider>
+						<QueryClientProvider client={queryClientRef.current}>
+							<Provider store={store}>
+								<ThemeContext.Provider value={{ theme, setTheme }}>
+									<div
+										className={clsx(
+											'font-montserrat min-h-screen text-gray-800',
+											'transition-colors duration-1000 bg-primary',
+											theme
+										)}
+									>
+										<AppLayoutApp />
 
-								<Component {...pageProps} />
-							</div>
-						</ThemeContext.Provider>
-					</Provider>
-				</QueryClientProvider>
+										<Component {...pageProps} />
+									</div>
+								</ThemeContext.Provider>
+							</Provider>
+						</QueryClientProvider>
+					</GunProvider>
+				</Web3Provider>
 			</CoinMarketProvider>
 		</>
 	);

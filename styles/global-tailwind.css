@@ -7,8 +7,8 @@
 :root {
 	--color-primary: #d10000;
 	--color-primary-opacity: #f5fff5;
-	--color-secondary: #f5fff5;
-	--color-overlay: #fafffc;
+	--color-secondary: #300;
+	--color-overlay: #300;
 	--color-white: white;
 	--color-alert-success: #37a211;
 	--color-alert-error: #b52423;
@@ -27,11 +27,11 @@
 }
 
 .light {
-	--color-primary: #d10000;
+	--color-primary: #306844;
 	--color-primary-opacity: #f5fff5;
 	--color-secondary: #f5fff5;
-	--color-overlay: #fafffc;
-	--color-overlay-2: #fff9e9;
+	--color-overlay: #182c25;
+	--color-overlay-2: #00140d;
 	--color-terciary: #f5fff5;
 	--color-terciaryOpacity: rgba(115, 101, 98, 0.85);
 	--color-white: white;

@@ -22,26 +22,26 @@ const data = {
 		'6:04 PM',
 		'9:04 AM',
 		'12:04 PM',
-		'3: 04 PM',
+		'3:04 PM',
 	],
 	datasets: [
 		{
 			fill: false,
 			lineTension: 0.1,
-			backgroundColor: 'red',
-			borderColor: '#3773f5',
+			backgroundColor: '#ff0000',
+			borderColor: '#ff0000',
 			borderCapStyle: 'butt',
 			borderDash: [],
 			borderDashOffset: 0.0,
 			borderJoinStyle: 'miter',
-			pointBorderColor: '#3773f5',
-			pointBackgroundColor: '#3773f5',
-			pointBorderWidth: 1,
+			pointBorderColor: '#ff0000',
+			pointBackgroundColor: '#ff0000',
+			pointBorderWidth: 5,
 			pointHoverRadius: 5,
-			pointHoverBackgroundColor: '#3773f5',
-			pointHoverBorderColor: '#3773f5',
-			pointHoverBorderWidth: 2,
-			pointRadius: 1,
+			pointHoverBackgroundColor: '#ff0000',
+			pointHoverBorderColor: '#ff0000',
+			pointHoverBorderWidth: 3,
+			pointRadius: 2,
 			pointHitRadius: 10,
 			data: getRandomPoints(),
 		},
@@ -52,6 +52,24 @@ const options = {
 	plugins: {
 		legend: {
 			display: false,
+		},
+	},
+	scales: {
+		x: {
+			ticks: {
+				color: '#aaa', // this will make x axis labels black
+			},
+			grid: {
+				color: '#aaa', // this will make vertical grid lines black
+			},
+		},
+		y: {
+			ticks: {
+				color: '#aaa', // this will make y axis labels black
+			},
+			grid: {
+				color: '#aaa', // this will make horizontal grid lines black
+			},
 		},
 	},
 };

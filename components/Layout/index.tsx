@@ -46,7 +46,7 @@ export default function AppLayoutApp() {
 
 	return (
 		<>
-			<nav className="flex w-full sticky top-0 md:text-md sm:text-sm text-[12px] md:items-start items-center bg-primary z-[1000]">
+			<nav className="flex w-full sticky top-0 md:text-md sm:text-sm text-[12px] md:items-start items-center bg-overlay-2 z-[1000]">
 				<div className="flex md:justify-start justify-between items-center w-full relative md:px-16 px-8 bg-[#00000077] py-2">
 					<Navbar />
 				</div>
@@ -90,7 +90,7 @@ export const NavbarItem: React.FC<any> = ({ name, link }) => {
 					{/* <div className="flex items-center w-4">{icon}</div> */}
 					<h3
 						className={clsx(
-							'text-md font-bold text-center whitespace-nowrap Raleway text-overlay'
+							'text-md font-bold text-center whitespace-nowrap Raleway text-white'
 						)}
 					>
 						{name}

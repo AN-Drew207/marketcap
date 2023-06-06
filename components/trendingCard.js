@@ -10,7 +10,7 @@ const styles = {
 const TrendingCard = ({ icon, title, trendingData }) => {
 	return (
 		<div
-			className={'w-full p-5 py-3 pb-0 bg-[#750000] rounded-xl text-white mr-3'}
+			className={'w-full p-5 py-3 pb-0 bg-overlay-2 rounded-xl text-white mr-3'}
 		>
 			<div className={styles.trendingCardWrapper}>
 				<div className="flex">
@@ -18,7 +18,6 @@ const TrendingCard = ({ icon, title, trendingData }) => {
 					&nbsp;&nbsp;
 					<p className="font-bold">{title}</p>
 				</div>
-				<MoreButton />
 			</div>
 			<br />
 
