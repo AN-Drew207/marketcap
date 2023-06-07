@@ -30,7 +30,11 @@ export const SidebarMobile: React.FC<LayoutDashboardProps & any> = ({
 }) => {
 	const router = useRouter();
 	const { disconnect } = useMagicLink();
-	const { address, typeOfWallet } = useSelector((state: { state: State }) => {
+	const { ethAddress } = useSelector((state: { state: State }) => {
+		return state.state.user;
+	});
+
+	const { providerName } = useSelector((state: { state: State }) => {
 		return state.state;
 	});
 
@@ -126,7 +130,7 @@ export const SidebarMobile: React.FC<LayoutDashboardProps & any> = ({
 											</Fragment>
 										);
 									})}
-									{address ? (
+									{ethAddress ? (
 										<>
 											<div>
 												<Link href={'/app/eBar'}>
@@ -142,7 +146,7 @@ export const SidebarMobile: React.FC<LayoutDashboardProps & any> = ({
 											</div>
 
 											<div className="divider mx-3 mt-4 mb-4"></div>
-											{typeOfWallet == 'magic' && (
+											{providerName == 'magic' && (
 												<>
 													{/* <Button
 														className={clsx(

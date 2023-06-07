@@ -56,7 +56,9 @@ export const Web3ModalEthereum = {
 	getConnectorById(
 		id: 'coinbaseWallet' | 'injected' | 'metaMask' | 'walletConnect'
 	) {
-		const connector = getClient()?.connectors.find((item) => item.id === id);
+		const connector = getClient()?.connectors.find(
+			(item: any) => item.id === id
+		);
 		if (!connector) throw new Error(`Missing ${id} connector`);
 
 		return connector;
