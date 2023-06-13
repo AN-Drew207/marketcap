@@ -27,7 +27,7 @@ const ChatCard = ({
 	senderAvatar,
 	likes,
 	comments,
-}) => {
+}: any) => {
 	return (
 		<div className={styles.chatCard}>
 			<div className={styles.chatCardWrapper}>

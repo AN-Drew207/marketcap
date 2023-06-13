@@ -75,7 +75,7 @@ const options = {
 };
 
 const Graph = () => {
-	return <Line data={data} options={options} width={400} height={150} />;
+	return <Line data={data as any} options={options} width={400} height={150} />;
 };
 
 export default Graph;
