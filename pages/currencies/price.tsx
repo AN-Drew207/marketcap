@@ -14,9 +14,9 @@ const Price = () => {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 
-		setCoinName(urlParams.get('coin'));
-		setPrice(Number(urlParams.get('price')).toLocaleString(0));
-		setCoinSymbol(urlParams.get('symbol'));
+		setCoinName(urlParams.get('coin') || '');
+		setPrice(Number(urlParams.get('price'))?.toLocaleString());
+		setCoinSymbol(urlParams.get('symbol') || '');
 	};
 
 	return (

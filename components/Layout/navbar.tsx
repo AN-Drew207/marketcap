@@ -19,12 +19,8 @@ import { useWeb3React } from '@web3-react/core';
 import { WALLETS } from 'utils/connection/utils';
 
 export const Navbar = () => {
-	const { ethAddress: account } = useSelector(
-		(state: any) => state.blockchain.user
-	);
-	const { network, networkName } = useSelector(
-		(state: any) => state.blockchain
-	);
+	const { ethAddress: account } = useSelector((state: any) => state.state.user);
+	const { network, networkName } = useSelector((state: any) => state.state);
 
 	const { account: user, provider } = useWeb3React();
 
@@ -56,7 +52,6 @@ export const Navbar = () => {
 		const savedLoginTime = localStorage.getItem('loginTime');
 		const currentTime = new Date().getTime();
 		const TWELVE_HOURS = 12 * 60 * 60 * 1000;
-		console.log('relogin', typeOfConnection, savedLoginTime);
 		if (
 			typeOfConnection &&
 			savedLoginTime &&

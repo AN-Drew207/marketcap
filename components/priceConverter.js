@@ -16,7 +16,7 @@ import { CoinMarketContext } from '../context/context';
 import { SwapOutlined } from '@ant-design/icons';
 
 const styles = {
-	converter: `flex items-center justify-between bg-overlay border border-[#aa0000] px-5 py-5 rounded-xl`,
+	converter: `flex items-center justify-between bg-overlay border border-primary px-5 py-5 rounded-xl`,
 	convertButton: `bg-overlay p-2 px-5 w-min rounded-xl mt-5 cursor-pointer hover:opacity-60`,
 };
 

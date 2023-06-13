@@ -13,6 +13,7 @@ import solana from '../assets/solana.png';
 import avalanche from '../assets/avalanche.png';
 import bnb from '../assets/bnb.png';
 import { useMoralis } from 'react-moralis';
+import clsx from 'clsx';
 
 const styles = {
 	coinDetails: `min-h-screen text-white`,
@@ -27,7 +28,7 @@ const styles = {
 	flexBetween: `flex justify-between`,
 };
 
-const CoinDetails = ({ coinName, coinSymbol, price }) => {
+const CoinDetails = ({ coinName, coinSymbol, price }: any) => {
 	const coinIcon = () => {
 		switch (coinName) {
 			case 'Bitcoin':
@@ -184,7 +185,7 @@ const CoinDetails = ({ coinName, coinSymbol, price }) => {
 						</div>
 						<br />
 						Topics
-						<div className={[styles.coinDetailsLinks, 'topics']}>
+						<div className={clsx(styles.coinDetailsLinks, 'topics')}>
 							<div className={styles.greyBtn}>Mineable</div>
 							<div className={styles.greyBtn}>PoW</div>
 							<div className={styles.greyBtn}>SHA-256</div>

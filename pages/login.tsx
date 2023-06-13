@@ -22,7 +22,7 @@ const Login = () => {
 	const [loading, setLoading] = React.useState(false);
 	const { login, isAuthenticated } = useMagicLink();
 
-	const { provider, providerName } = useSelector((state: any) => state.layout);
+	const { provider, providerName } = useSelector((state: any) => state.state);
 	const { account: user } = useWeb3React();
 
 	const router = useRouter();
@@ -31,29 +31,16 @@ const Login = () => {
 		setLoading(true);
 		try {
 			await login(dispatch);
+			console.log('a');
 			localStorage.setItem('typeOfConnection', 'magic');
 			localStorage.setItem('loginTime', new Date().getTime().toString());
-			// const queryAddress: any = router.query.get('redirectAddress')?.toString();
-			// if (
-			// 	query.get('redirect') == 'true' &&
-			// 	query.get('redirectAddress') != null
-			// ) {
-			// 	router.push(
-			// 		query.get('redirectAddress') != undefined ? queryAddress : '/'
-			// 	);
-			// }
+			router.push('/');
 		} catch (err) {
 			console.log({ err });
 			setLoading(false);
 		}
 		setLoading(false);
 	};
-
-	React.useEffect(() => {
-		if (isAuthenticated || user !== '') router.push('/');
-	}, [isAuthenticated, user]);
-
-	// const setUser = async () => {};
 
 	const handleConnection = async (connection: any, title: any) => {
 		setLoading(true);
@@ -67,20 +54,8 @@ const Login = () => {
 			const savedLoginTime = localStorage.getItem('loginTime');
 			console.log(savedLoginTime, typeOfConnection, 'xddd');
 
-			// const queryAddress: any = query.get('redirectAddress')?.toString();
-
 			await switchChain(80001, providerName, provider);
-			// const battlePassContract = getContractCustom(
-			//   "BattlePass",
-			//   battlePass,
-			//   provider,
-			// );
-			// const season = (
-			//   await battlePassContract.methods
-			//     .seasons(await battlePassContract.methods.currentSeason().call())
-			//     .call()
-			// ).rewardId;
-			// const balance = await battlePassContract.methods.balanceOf(user, season);
+
 			dispatch(
 				onUpdateUser({
 					ethAddress: user,
@@ -90,13 +65,10 @@ const Login = () => {
 					// ownsBattlePass: balance > 0,
 				})
 			);
-			// if (
-			// 	query.get('redirect') == 'true' &&
-			// 	query.get('redirectAddress') != null
-			// ) {
-			// 	router(query.get('redirectAddress') != undefined ? queryAddress : '/');
-			// }
+
+			router.push('/');
 		} catch (err) {
+			setLoading(false);
 			console.log({ err });
 		}
 		setLoading(false);
@@ -112,7 +84,7 @@ const Login = () => {
 						alt=""
 					/>
 				</div>
-				<div className="absolute h-screen w-full overflow-hidden bg-overlay-2 opacity-50"></div>
+				<div className="absolute h-screen w-full overflow-hidden bg-overlay-2 opacity-75"></div>
 
 				<h1 className="font-bold text-white text-3xl relative">Let's Login</h1>
 				<div

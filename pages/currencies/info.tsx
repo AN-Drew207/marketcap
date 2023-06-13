@@ -25,7 +25,7 @@ const Currencies = () => {
 	const [coinSymbol, setCoinSymbol] = useState('');
 	const [coinIcon, setCoinIcon] = useState('');
 	const [price, setPrice] = useState('');
-	let { getCurrency } = useContext(CoinMarketContext);
+	let { getCurrency } = useContext<any>(CoinMarketContext);
 
 	useEffect(() => {
 		getData();
@@ -35,8 +35,8 @@ const Currencies = () => {
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
 
-		const id = urlParams.get('id');
-		const res = await getCurrency(id);
+		const id: any = parseInt(urlParams.get('id') || '0');
+		const res: any = await getCurrency(id);
 		console.log(res);
 		setCoinName(res[id].name);
 		setCoinIcon(res[id].logo);

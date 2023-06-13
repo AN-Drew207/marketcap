@@ -18,8 +18,8 @@ const styles = {
 	buyButton: `cursor-pointer z-10 border Raleway !border-white px-2 py-1 text-white hover:bg-white hover:text-overlay-2 transition-all duration-300 rounded-md`,
 };
 
-const CoinNameRow = ({ name, icon, clicked }) => {
-	const { openModal } = useContext(CoinMarketContext);
+const CoinNameRow = ({ name, icon, clicked }: any) => {
+	const { setOpenBuyCryptoModal } = useContext<any>(CoinMarketContext);
 
 	const coinIcon = () => {
 		switch (name) {
@@ -155,7 +155,10 @@ const CoinNameRow = ({ name, icon, clicked }) => {
 
 			<p>
 				{name === 'Bitcoin' || name === 'Ethereum' || name === 'Tether' ? (
-					<span className={styles.buyButton} onClick={() => openModal()}>
+					<span
+						className={styles.buyButton}
+						onClick={() => setOpenBuyCryptoModal(true)}
+					>
 						Buy
 					</span>
 				) : (

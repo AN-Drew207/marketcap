@@ -34,7 +34,7 @@ const getConnectionOrder = (selectedWallet: ConnectionType) => {
 };
 
 export default function Web3Provider({ children }: { children: ReactNode }) {
-	const { wallet } = useSelector((state: any) => state.blockchain.user);
+	const { ethAddress: wallet } = useSelector((state: any) => state.state.user);
 	const connections = getConnectionOrder(wallet);
 	const connectors: [Connector, Web3ReactHooks][] = connections.map(
 		({ hooks, connector }: any) => [connector, hooks]

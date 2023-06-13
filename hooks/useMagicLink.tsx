@@ -50,6 +50,25 @@ export default function useMagicLink() {
 	const login = async (dispatch: any) => {
 		setLoading(true);
 		try {
+			const key = process.env.NEXT_PUBLIC_MAGIC_KEY
+				? process.env.NEXT_PUBLIC_MAGIC_KEY
+				: '';
+			const chainId = process.env.NEXT_PUBLIC_POLYGON_ID
+				? process.env.NEXT_PUBLIC_POLYGON_ID
+				: '';
+			const rpcUrl = process.env.NEXT_PUBLIC_SECONDARY_RPC
+				? process.env.NEXT_PUBLIC_SECONDARY_RPC
+				: '';
+			const magic = new Magic(key, {
+				network: {
+					rpcUrl: rpcUrl,
+					chainId: parseInt(chainId),
+				},
+				locale: 'en_US',
+				extensions: [new ConnectExtension()],
+			});
+			const web3 = new Web3(magic.rpcProvider);
+			console.log(web3, magic);
 			const publicAddress = (await web3.eth.getAccounts())[0];
 			setAccount(publicAddress);
 			dispatch(

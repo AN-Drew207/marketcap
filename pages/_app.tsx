@@ -16,6 +16,7 @@ import AppLayoutApp from 'components/Layout';
 import { CoinMarketProvider } from 'context/context';
 import { GunProvider } from 'context/gunContext';
 import Web3Provider from 'components/Web3Provider';
+import { Toaster } from 'react-hot-toast';
 
 function MyApp({
 	Component,
@@ -48,29 +49,30 @@ function MyApp({
 					content="435ca054f0bb2782922ffceb8a3f7314"
 				/>
 			</Head>
-			<CoinMarketProvider>
+			<Provider store={store}>
 				<Web3Provider>
-					<GunProvider>
+					<CoinMarketProvider>
+						{/* <GunProvider> */}
 						<QueryClientProvider client={queryClientRef.current}>
-							<Provider store={store}>
-								<ThemeContext.Provider value={{ theme, setTheme }}>
-									<div
-										className={clsx(
-											'font-montserrat min-h-screen text-gray-800',
-											'transition-colors duration-1000 bg-primary',
-											theme
-										)}
-									>
-										<AppLayoutApp />
+							<ThemeContext.Provider value={{ theme, setTheme }}>
+								<div
+									className={clsx(
+										'font-montserrat min-h-screen text-gray-800',
+										'transition-colors duration-1000 bg-primary',
+										theme
+									)}
+								>
+									<AppLayoutApp />
 
-										<Component {...pageProps} />
-									</div>
-								</ThemeContext.Provider>
-							</Provider>
+									<Component {...pageProps} />
+									<Toaster />
+								</div>
+							</ThemeContext.Provider>
 						</QueryClientProvider>
-					</GunProvider>
+						{/* </GunProvider> */}
+					</CoinMarketProvider>
 				</Web3Provider>
-			</CoinMarketProvider>
+			</Provider>
 		</>
 	);
 }

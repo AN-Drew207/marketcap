@@ -5,11 +5,20 @@ import clsx from 'clsx';
 import { useDispatch } from 'react-redux';
 import useMagicLink from 'hooks/useMagicLink';
 import { Navbar } from 'components/Layout/navbar';
+import { useModal } from 'hooks/modal';
+import { ChevronLeftIcon } from '@heroicons/react/outline';
+import { toast } from 'react-hot-toast';
+import Button from 'components/button';
+import { ButtonContent } from 'components/common/button/button';
+import SwapCryptoModal from 'components/swapCryptoModal';
 
 export default function AppLayoutApp() {
 	const router = useRouter();
 
+	const { Modal, hide, show, isShow } = useModal();
+
 	const [isExecuted, setIsExecuted] = React.useState(false);
+	const [addressSent, setAddress] = React.useState('');
 	// const [sideBarOpen, setSidebarOpen] = React.useState(false);
 	const dispatch = useDispatch();
 	const { login } = useMagicLink();
@@ -46,6 +55,7 @@ export default function AppLayoutApp() {
 
 	return (
 		<>
+			<SwapCryptoModal />
 			<nav className="flex w-full sticky top-0 md:text-md sm:text-sm text-[12px] md:items-start items-center bg-overlay-2 z-[1000]">
 				<div className="flex md:justify-start justify-between items-center w-full relative md:px-16 px-8 bg-[#00000077] py-2">
 					<Navbar />

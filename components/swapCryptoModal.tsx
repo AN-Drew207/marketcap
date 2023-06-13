@@ -1,13 +1,13 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { CoinMarketContext } from '../context/context';
 
 const styles = {
-	modal: `w-screen h-screen bg-gray-900/90 z-10 fixed top-0 left-0 flex items-center justify-center`,
-	modalContent: `bg-[overlay rounded-lg p-3 w-max w-1/3`,
+	modal: `w-screen h-screen bg-[#182c25cc] z-10 fixed top-0 left-0 flex items-center justify-center !text-primary`,
+	modalContent: `bg-white rounded-lg p-4 w-max w-1/3`,
 	input: `w-full p-2 border rounded-lg mb-5 border-gray-600/50 outline-none`,
-	button: `bg-[#6188FF] p-2 px-5 rounded-lg text-white hover:opacity-50`,
+	button: `bg-primary p-2 px-5 rounded-lg text-white hover:opacity-75`,
 	label: `font-bold text-3xl`,
-	closeModalButton: `hover:text-red-300 text-gray-600 cursor-pointer`,
+	closeModalButton: `hover:text-red-300 text-4xl text-gray-600 cursor-pointer`,
 };
 
 const SwapCryptoModal = () => {
@@ -15,15 +15,41 @@ const SwapCryptoModal = () => {
 		openBuyCryptoModal,
 		setOpenBuyCryptoModal,
 		mint,
-		coins,
-		loadingCoins,
+		getTopTenCoins,
 		amount,
 		setAmount,
 		fromToken,
 		setFromToken,
 		toToken,
 		setToToken,
-	} = useContext(CoinMarketContext);
+	} = useContext<any>(CoinMarketContext);
+
+	const [coins, setCoins] = React.useState<any>([]);
+	const [loadingCoins, setLoadingCoins] = React.useState(true);
+
+	const setCoinsFunction = async () => {
+		setLoadingCoins(true);
+		let coins = await getTopTenCoins();
+		let filteredResponse = [];
+		for (let i = 0; i < coins.length; i++) {
+			const element = coins[i];
+			if (element.cmc_rank <= 10) filteredResponse.push(element);
+		}
+		console.log(
+			filteredResponse,
+			filteredResponse[0].symbol,
+			filteredResponse[1].symbol,
+			'COINS ARRAY'
+		);
+		setFromToken(filteredResponse[0].symbol);
+		setToToken(filteredResponse[1].symbol);
+		setCoins(filteredResponse);
+		setLoadingCoins(false);
+	};
+
+	React.useEffect(() => {
+		setCoinsFunction();
+	}, []);
 
 	if (openBuyCryptoModal)
 		return (
@@ -40,7 +66,7 @@ const SwapCryptoModal = () => {
 								setToToken('');
 							}}
 						>
-							close &times;
+							&times;
 						</p>
 					</div>
 					<div className="mb-5" />
@@ -54,11 +80,11 @@ const SwapCryptoModal = () => {
 						onChange={(e) => setFromToken(e.target.value)}
 						value={fromToken}
 					>
-						{coins.map((coin) => {
+						{coins?.map((coin: any) => {
 							if (!loadingCoins) {
 								return (
-									<option key={coin.id} value={coin.attributes.name}>
-										{coin.attributes.name}
+									<option key={coin?.id} value={coin?.symbol}>
+										{coin?.symbol}
 									</option>
 								);
 							}
@@ -75,11 +101,11 @@ const SwapCryptoModal = () => {
 						onChange={(e) => setToToken(e.target.value)}
 						value={toToken}
 					>
-						{coins.map((coin) => {
+						{coins.map((coin: any) => {
 							if (!loadingCoins) {
 								return (
-									<option key={coin.id} value={coin.attributes.name}>
-										{coin.attributes.name}
+									<option key={coin?.id} value={coin?.symbol}>
+										{coin?.symbol}
 									</option>
 								);
 							}
